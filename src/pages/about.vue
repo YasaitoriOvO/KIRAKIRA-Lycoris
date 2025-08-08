@@ -1,15 +1,14 @@
 <script setup lang="ts">
-	const { VITE_BACKEND_URI: BACKEND_URI, BRANCH, COMMIT_REF } = import.meta.env;
-	const branch = computed(() => {
-		const items: string[] = [];
-		if (BACKEND_URI.includes("localhost")) items.push("Local Backend");
-		else if (BACKEND_URI.includes("kirakira")) items.push("Live");
-		else if (BACKEND_URI === "none") items.push("No Backend");
-		if (import.meta.env.DEV) items.push("Dev");
-		if (BRANCH) items.push(BRANCH);
-		if (COMMIT_REF) items.push(COMMIT_REF);
-		return items.join(" ");
-	});
+const branch = computed(() => {
+  const items: string[] = [];
+  if (import.meta.env.VITE_BACKEND_URI.includes("localhost")) items.push("Local Backend");
+  else if (import.meta.env.VITE_BACKEND_URI.includes("kirakira")) items.push("Live");
+  else if (import.meta.env.VITE_BACKEND_URI === "none") items.push("No Backend");
+  if (import.meta.env.DEV) items.push("Dev");
+  if (typeof BRANCH !== "undefined") items.push(BRANCH);
+  if (typeof COMMIT_REF !== "undefined") items.push(COMMIT_REF);
+  return items.join(" ");
+});
 </script>
 
 <template>
