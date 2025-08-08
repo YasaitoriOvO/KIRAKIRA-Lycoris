@@ -124,7 +124,7 @@ export default defineConfig(({ mode }) => {
 		},
 		define: {
 			BRANCH: process.env.VERCEL_GIT_COMMIT_REF,
-			COMMIT_REF: process.env.VERCEL_GIT_COMMIT_SHA,
+			COMMIT_REF: JSON.stringify(process.env.VERCEL_GIT_COMMIT_SHA),
 		},
 	};
 });
